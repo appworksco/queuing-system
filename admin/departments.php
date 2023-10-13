@@ -1,4 +1,9 @@
-<?php include realpath(__DIR__ . '../.././includes/layout/dashboard-header.php') ?>
+<?php 
+    include realpath(__DIR__ . '../.././includes/layout/dashboard-header.php');
+    include realpath(__DIR__ . '../.././models/departments-facade.php');
+  
+    $departmentsFacade = new DepartmentsFacade; 
+?>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Queuing System</a>
@@ -16,25 +21,25 @@
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-            <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
-                    <span data-feather="home"></span> Departments
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="users"></span> Users
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="bar-chart-2"></span> Reports
-                </a>
-            </li>
-            </ul>
-        </div>
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">
+                        <span data-feather="home"></span> Departments
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span data-feather="users"></span> Users
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span data-feather="bar-chart-2"></span> Reports
+                    </a>
+                </li>
+                </ul>
+            </div>
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -51,15 +56,19 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
+                        <?php
+                            $fetchDepartments = $departmentsFacade->fetchDepartments();
+                            while ($row = $fetchDepartments->fetch(PDO::FETCH_ASSOC)) {
+                        ?>
                         <tr>
-                            <td>asd</td>
-                            <td>asd</td>
+                            <td><?= $row["department"] ?></td>
+                            <td>
+                                <a href="#" class="btn btn-info btn-sm">Update</a>
+                                <a href="delete-department.php?department_id=<?= $row["id"] ?>" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
                         </tr>
-                        <tr>
-                            <td>asd</td>
-                            <td>asd</td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>

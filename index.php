@@ -9,29 +9,29 @@
         $password = $_POST["password"];
     
         if (empty($username)) {
-          array_push($invalid, 'Username should not be empty!');
+            array_push($invalid, 'Username should not be empty!');
         } if (empty($password)) {
-          array_push($invalid, 'Password should not be empty!');
+            array_push($invalid, 'Password should not be empty!');
         } else {
-          $verifyUsernameAndPassword = $usersFacade->verifyUsernameAndPassword($username, $password);
-          $login = $usersFacade->login($username, $password);
-          if ($verifyUsernameAndPassword > 0) {
-            while ($row = $login->fetch(PDO::FETCH_ASSOC)) {
-              if ($row['user_type'] == 0) {
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['full_name'] = $row['full_name'];
-                header('Location: admin/index.php');
-              } else {
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['full_name'] = $row['full_name'];
-                header('Location: index.php');
-              }
+            $verifyUsernameAndPassword = $usersFacade->verifyUsernameAndPassword($username, $password);
+            $login = $usersFacade->login($username, $password);
+            if ($verifyUsernameAndPassword > 0) {
+                while ($row = $login->fetch(PDO::FETCH_ASSOC)) {
+                    if ($row['user_type'] == 0) {
+                        $_SESSION['user_id'] = $row['id'];
+                        $_SESSION['full_name'] = $row['full_name'];
+                        header('Location: admin/index.php');
+                    } else {
+                        $_SESSION['user_id'] = $row['id'];
+                        $_SESSION['full_name'] = $row['full_name'];
+                        header('Location: index.php');
+                    }
+                }
+            } else {
+                array_push($invalid, "Incorrect username or password!");
             }
-          } else {
-            array_push($invalid, "Incorrect username or password!");
-          }
         }
-      }
+    }
 ?>
     
 <style>
