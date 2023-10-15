@@ -47,12 +47,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="counters">
+                            <span data-feather="monitor"></span> Counters
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="users">
                             <span data-feather="users"></span> Users
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="reports">
                             <span data-feather="bar-chart-2"></span> Reports
                         </a>
                     </li>

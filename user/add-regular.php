@@ -31,7 +31,7 @@
     if ($fetchQueueRegular == 0) {
         $number = 1;
         $type = 'Regular';
-        $status = 'Open';
+        $status = 'Wait';
         $addNumberRegular = $queueFacade->addNumberRegular($number, $type, $status);
     } else {
         // get latest data and add 1
@@ -39,7 +39,7 @@
         while ($row = $fetchLatestNumberRegular->fetch(PDO::FETCH_ASSOC)) {
             $number = $row["number"] + 1;
             $type = 'Regular';
-            $status = 'Open';
+            $status = 'Wait';
             $addNumberRegular = $queueFacade->addNumberRegular($number, $type, $status);
         }
     }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 03:37 AM
+-- Generation Time: Oct 15, 2023 at 01:01 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `queuing_system`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcement`
+--
+
+CREATE TABLE `announcement` (
+  `id` int(11) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -88,7 +99,7 @@ CREATE TABLE `serving` (
 --
 
 INSERT INTO `serving` (`id`, `number`, `type`, `counter`) VALUES
-(0, 2, 'Special', 'Counter 1');
+(0, 1, 'Regular', 'Counter 1');
 
 -- --------------------------------------------------------
 
@@ -127,9 +138,33 @@ INSERT INTO `users` (`id`, `user_type`, `first_name`, `last_name`, `username`, `
 (3, 1, 'Test', 'Test', 'test', 'test'),
 (4, 1, 'qwe', 'qwe', 'qwe', 'qwe');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video`
+--
+
+CREATE TABLE `video` (
+  `id` int(11) NOT NULL,
+  `link` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `video`
+--
+
+INSERT INTO `video` (`id`, `link`) VALUES
+(1, 'https://www.youtube.com/embed/oYtqLc9fn2g');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `announcement`
+--
+ALTER TABLE `announcement`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `counters`
@@ -168,8 +203,20 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `video`
+--
+ALTER TABLE `video`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `announcement`
+--
+ALTER TABLE `announcement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `counters`
@@ -187,7 +234,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `regulars`
 --
 ALTER TABLE `regulars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `serving`
@@ -199,13 +246,19 @@ ALTER TABLE `serving`
 -- AUTO_INCREMENT for table `specials`
 --
 ALTER TABLE `specials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `video`
+--
+ALTER TABLE `video`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

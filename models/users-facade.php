@@ -27,8 +27,8 @@
       return $sql;
     }
 
-    public function updateUser($updateUserId, $firstName, $lastName, $username, $password) {
-      $sql = $this->connect()->prepare("UPDATE users SET first_name = '$firstName', last_name = '$lastName', username = '$username', password = '$password' WHERE id = $updateUserId");
+    public function updateUser($userId, $firstName, $lastName, $username, $password) {
+      $sql = $this->connect()->prepare("UPDATE users SET first_name = '$firstName', last_name = '$lastName', username = '$username', password = '$password' WHERE id = $userId");
       $sql->execute();
       return $sql;
     }

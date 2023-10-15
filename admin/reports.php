@@ -1,30 +1,16 @@
 <?php 
     include realpath(__DIR__ . '../.././includes/layout/dashboard-header.php');
-    include realpath(__DIR__ . '../.././models/departments-facade.php');
+    include realpath(__DIR__ . '../.././models/reports-facade.php');
   
-    $departmentsFacade = new DepartmentsFacade; 
+    $reportsFacade = new ReportsFacade; 
 
-    if (isset($_GET["department_id"])) {
-        $departmentId = $_GET["department_id"];
+    if (isset($_GET["msg_invalid"])) {
+        $msg = $_GET["msg_invalid"];
+        array_push($invalid, $msg);
     }
-
-    if (isset($_POST["submit"])) {
-        $departmentId = $_POST["department_id"];
-        $department = $_POST["department"];
-    
-        if (empty($department)) {
-          array_push($invalid, 'Department should not be empty!');
-        }   else {
-            $verifyDeparment = $departmentsFacade->verifyDepartment($department);
-            if ($verifyDeparment == 1) {
-                header("Location: departments.php?msg_invalid=Department already exist!");
-            } else {
-                $updateDepartment = $departmentsFacade->updateDepartment($department, $departmentId);
-                if ($updateDepartment) {
-                    header("Location: departments.php?msg_success=Department has been added successfully!");
-                }
-            }
-        }
+    if (isset($_GET["msg_success"])) {
+        $msg = $_GET["msg_success"];
+        array_push($success, $msg);
     }
 ?>
 
@@ -47,7 +33,7 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="departments">
+                        <a class="nav-link" href="departments">
                             <span data-feather="home"></span> Departments
                         </a>
                     </li>
@@ -62,7 +48,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="reports">
+                        <a class="nav-link active" href="#">
                             <span data-feather="bar-chart-2"></span> Reports
                         </a>
                     </li>
@@ -73,23 +59,39 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="site-departments pt-4">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h3>Update Department</h3>
+                    <h3>Reports</h3>
                 </div>
                 <hr>
                 <?php include('../errors.php'); ?>
-                <div class="form-group bg-light p-3">
-                    <form action="update-department" method="post">
-                        <input type="hidden" value="<?= $departmentId ?>" name="department_id">
-                        <label for="department" class="form-label">Department</label>
-                        <?php
-                            $fetchDepartmentById = $departmentsFacade->fetchDepartmentById($departmentId);
-                            while ($row = $fetchDepartmentById->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <input type="text" class="form-control" id="department" value="<?= $row["department"] ?>" placeholder="Department" name="department">
-                        <?php } ?>
-                        <button class="btn btn-primary btn-sm mt-2" type="submit" name="submit">Submit</button>
-                    </form>
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="card-title m-0">Video</h6>
+                    </div>
+                    <div class="card-body">
+                        <table id="example" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Counter</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $fetchVideo = $reportsFacade->fetchVideo();
+                                    while ($row = $fetchVideo->fetch(PDO::FETCH_ASSOC)) {
+                                ?>
+                                <tr>
+                                    <td><?= $row["link"] ?></td>
+                                    <td>
+                                        <a href="update-counter?counter_id=<?= $row["id"] ?>" class="btn btn-info btn-sm">Update</a>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                
             </div>
         </main>
     </div>

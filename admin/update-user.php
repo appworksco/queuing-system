@@ -1,28 +1,32 @@
 <?php 
     include realpath(__DIR__ . '../.././includes/layout/dashboard-header.php');
-    include realpath(__DIR__ . '../.././models/departments-facade.php');
+    include realpath(__DIR__ . '../.././models/users-facade.php');
   
-    $departmentsFacade = new DepartmentsFacade; 
+    $usersFacade = new usersFacade; 
 
-    if (isset($_GET["department_id"])) {
-        $departmentId = $_GET["department_id"];
+    if (isset($_GET["user_id"])) {
+        $userId = $_GET["user_id"];
     }
 
     if (isset($_POST["submit"])) {
-        $departmentId = $_POST["department_id"];
-        $department = $_POST["department"];
-    
-        if (empty($department)) {
+        $userId = $_POST["user_id"];
+        $firstName = $_POST["first_name"];
+        $lastName = $_POST["last_name"];
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        if (empty($firstName)) {
           array_push($invalid, 'Department should not be empty!');
-        }   else {
-            $verifyDeparment = $departmentsFacade->verifyDepartment($department);
-            if ($verifyDeparment == 1) {
-                header("Location: departments.php?msg_invalid=Department already exist!");
-            } else {
-                $updateDepartment = $departmentsFacade->updateDepartment($department, $departmentId);
-                if ($updateDepartment) {
-                    header("Location: departments.php?msg_success=Department has been added successfully!");
-                }
+        } if (empty($lastName)) {
+            array_push($invalid, 'Last Name should not be empty!');
+        } if (empty($username)) {
+            array_push($invalid, 'Username should not be empty!');
+        } if (empty($password)) {
+            array_push($invalid, 'Password should not be empty!');
+        } else {
+            $updateUser = $usersFacade->updateUser($userId, $firstName, $lastName, $username, $password);
+            if ($updateUser) {
+                header("Location: users?msg_success=User has been added successfully!");
             }
         }
     }
@@ -47,7 +51,7 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="departments">
+                        <a class="nav-link" href="departments">
                             <span data-feather="home"></span> Departments
                         </a>
                     </li>
@@ -57,7 +61,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="users">
+                        <a class="nav-link active" href="users">
                             <span data-feather="users"></span> Users
                         </a>
                     </li>
@@ -73,19 +77,25 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="site-departments pt-4">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h3>Update Department</h3>
+                    <h3>Add User</h3>
                 </div>
                 <hr>
                 <?php include('../errors.php'); ?>
                 <div class="form-group bg-light p-3">
-                    <form action="update-department" method="post">
-                        <input type="hidden" value="<?= $departmentId ?>" name="department_id">
-                        <label for="department" class="form-label">Department</label>
+                    <form action="update-user" method="post">
+                        <input type="hidden" value="<?= $userId ?>" name="user_id">
                         <?php
-                            $fetchDepartmentById = $departmentsFacade->fetchDepartmentById($departmentId);
-                            while ($row = $fetchDepartmentById->fetch(PDO::FETCH_ASSOC)) {
+                            $fetchUsersById = $usersFacade->fetchUsersById($userId);
+                            while ($row = $fetchUsersById->fetch(PDO::FETCH_ASSOC)) {
                         ?>
-                        <input type="text" class="form-control" id="department" value="<?= $row["department"] ?>" placeholder="Department" name="department">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" value="<?= $row["first_name"] ?>" placeholder="First Name" name="first_name">
+                        <label for="lastName" class="form-label mt-2">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" value="<?= $row["last_name"] ?>" placeholder="Last Name" name="last_name">
+                        <label for="username" class="form-label mt-2">Username</label>
+                        <input type="text" class="form-control" id="username" value="<?= $row["username"] ?>" placeholder="Username" name="username">
+                        <label for="password" class="form-label mt-2">Password</label>
+                        <input type="password" class="form-control" id="password" value="<?= $row["password"] ?>" placeholder="Password" name="password">
                         <?php } ?>
                         <button class="btn btn-primary btn-sm mt-2" type="submit" name="submit">Submit</button>
                     </form>

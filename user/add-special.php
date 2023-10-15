@@ -31,7 +31,7 @@
     if ($fetchQueueSpecial == 0) {
         $number = 1;
         $type = 'Special';
-        $status = 'Open';
+        $status = 'Wait';
         $addNumberSpecial = $queueFacade->addNumberSpecial($number, $type, $status);
     } else {
         // get latest data and add 1
@@ -39,7 +39,7 @@
         while ($row = $fetchLatestNumberSpecial->fetch(PDO::FETCH_ASSOC)) {
             $number = $row["number"] + 1;
             $type = 'Special';
-            $status = 'Open';
+            $status = 'Wait';
             $addNumberSpecial = $queueFacade->addNumberSpecial($number, $type, $status);
         }
     }

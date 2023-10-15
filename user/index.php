@@ -67,10 +67,9 @@
                                 <td><?= $row["number"] ?></td>
                                 <td><?= $row["status"] ?></td>
                                 <td>
-                                    <?php if ($row["status"] == 'Open') { ?>
-                                        <a href="wait-special?special_id=<?= $row["id"] ?>" class="btn btn-warning btn-sm">Wait</a>
-                                    <?php } if ($row["status"] == 'Wait') { ?> 
-                                        <a href="serve-special?special_id=<?= $row["id"] ?>&number=<?= $row["number"] ?>&type=<?= $row["type"] ?>" class="btn btn-info btn-sm">Serve</a>
+                                    <?php if ($row["status"] == 'Wait') { ?> 
+                                        <a href="serve-special?special_id=<?= $row["id"] ?>&number=<?= $row["number"] ?>&type=<?= $row["type"] ?>" class="btn btn-info btn-sm">Call</a>
+                                        <a href="done-special?special_id=<?= $row["id"] ?>" class="btn btn-success btn-sm">No Show</a>
                                     <?php } if ($row["status"] == 'Serve') {  ?>
                                         <a href="done-special?special_id=<?= $row["id"] ?>" class="btn btn-success btn-sm">Done</a>
                                     <?php } ?>
@@ -109,10 +108,9 @@
                                 <td><?= $row["number"] ?></td>
                                 <td><?= $row["status"] ?></td>
                                 <td>
-                                    <?php if ($row["status"] == 'Open') { ?>
-                                        <a href="wait-regular?regular_id=<?= $row["id"] ?>" class="btn btn-warning btn-sm">Wait</a>
-                                    <?php } if ($row["status"] == 'Wait') { ?> 
-                                        <a href="serve-regular?regular_id=<?= $row["id"] ?>&number=<?= $row["number"] ?>&type=<?= $row["type"] ?>" class="btn btn-info btn-sm">Serve</a>
+                                    <?php if ($row["status"] == 'Wait') { ?> 
+                                        <a href="serve-regular?regular_id=<?= $row["id"] ?>&number=<?= $row["number"] ?>&type=<?= $row["type"] ?>" class="btn btn-info btn-sm">Call</a>
+                                        <a href="done-regular?regular_id=<?= $row["id"] ?>" class="btn btn-success btn-sm">No Show</a>
                                     <?php } if ($row["status"] == 'Serve') {  ?>
                                         <a href="done-regular?regular_id=<?= $row["id"] ?>" class="btn btn-success btn-sm">Done</a>
                                     <?php } ?>
