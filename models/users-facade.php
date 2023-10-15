@@ -3,7 +3,7 @@
   class UsersFacade extends DBConnection {
 
     public function fetchUsers() {
-      $sql = $this->connect()->prepare("SELECT * FROM users");
+      $sql = $this->connect()->prepare("SELECT * FROM users WHERE user_type = '1'");
       $sql->execute();
       return $sql;
     }
@@ -21,9 +21,9 @@
       return $count;
     }
 
-    public function register($userType, $email, $fullName, $username, $password) {
-      $sql = $this->connect()->prepare("INSERT INTO users(user_type, email, full_name, username, password) VALUES (?, ?, ?, ?, ?)");
-      $sql->execute([$userType, $email, $fullName, $username, $password]);
+    public function addUser($userType, $firstName, $lastName, $username, $password) {
+      $sql = $this->connect()->prepare("INSERT INTO users(user_type, first_name, last_name, username, password) VALUES (?, ?, ?, ?, ?)");
+      $sql->execute([$userType, $firstName, $lastName, $username, $password]);
       return $sql;
     }
 

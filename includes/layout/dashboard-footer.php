@@ -10,6 +10,20 @@
             'use strict'
             feather.replace({ 'aria-hidden': 'true' });
             new DataTable('#example');
+            $('#example-user').DataTable({
+                pageLength : 5,
+                lengthMenu: [[5], [5]],
+                "bPaginate": false,
+                "bFilter": false,
+                "bInfo": false
+            })
+            $('#example-user-1').DataTable({
+                pageLength : 5,
+                lengthMenu: [[5], [5]],
+                "bPaginate": false,
+                "bFilter": false,
+                "bInfo": false
+            })
         })()
     </script>
 </body>

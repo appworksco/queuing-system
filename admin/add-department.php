@@ -14,7 +14,10 @@
             if ($verifyDeparment == 1) {
                 array_push($invalid, "Department already exist!");
             } else {
-                $departmentsFacade->addDepartment($department);
+                $addDepartment = $departmentsFacade->addDepartment($department);
+                if ($addDepartment) {
+                    header("Location: departments?msg_success=Department has been added successfully!");
+                }
             }
         }
     }
@@ -28,7 +31,7 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="#">Sign out</a>
+            <a class="nav-link px-3" href="../logout">Sign out</a>
         </div>
     </div>
 </header>
@@ -38,21 +41,21 @@
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="departments">
-                        <span data-feather="home"></span> Departments
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span data-feather="users"></span> Users
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span data-feather="bar-chart-2"></span> Reports
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="departments">
+                            <span data-feather="home"></span> Departments
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="users"></span> Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="bar-chart-2"></span> Reports
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

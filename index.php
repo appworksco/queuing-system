@@ -1,10 +1,13 @@
 <?php 
     include realpath(__DIR__ . '/includes/layout/header.php');
     include realpath(__DIR__ . '/models/users-facade.php');
+    include realpath(__DIR__ . '/models/counters-facade.php');
   
-    $usersFacade = new UsersFacade; 
+    $usersFacade = new UsersFacade;
+    $countersFacade = new CountersFacade;
     
     if (isset($_POST["login"])) {
+        $counter = $_POST["counter"];
         $username = $_POST["username"];
         $password = $_POST["password"];
     
@@ -20,11 +23,12 @@
                     if ($row['user_type'] == 0) {
                         $_SESSION['user_id'] = $row['id'];
                         $_SESSION['full_name'] = $row['full_name'];
-                        header('Location: admin/index.php');
+                        header('Location: admin/index');
                     } else {
+                        $_SESSION['counter'] = $counter;
                         $_SESSION['user_id'] = $row['id'];
                         $_SESSION['full_name'] = $row['full_name'];
-                        header('Location: index.php');
+                        header('Location: user/index');
                     }
                 }
             } else {
@@ -51,6 +55,17 @@
             <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
             <?php include('errors.php'); ?>
             <div class="form-floating">
+                <select name="counter" id="counter" class="form-control">
+                <?php
+                    $fetchCounters = $countersFacade->fetchCounters();
+                    while ($row = $fetchCounters->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                <option value="<?= $row["counter"] ?>"><?= $row["counter"] ?></option>
+                <?php } ?>
+                </select>
+                <label for="counter">Counter</label>
+            </div>
+            <div class="form-floating mt-2">
                 <input type="text" class="form-control" id="username" placeholder="Username" name="username">
                 <label for="username">Username</label>
             </div>

@@ -1,5 +1,4 @@
 <?php
-
     include realpath(__DIR__ . '../.././includes/layout/dashboard-header.php');
     include realpath(__DIR__ . '../.././models/departments-facade.php');
 
@@ -9,8 +8,7 @@
 		$departmentId = $_GET["department_id"];
 		$deleteDepartment = $departmentsFacade->deleteDepartment($departmentId);
 		if ($deleteDepartment) {
-			header("Location: departments.php?msg=Department has been deleted successfully!");
+			header("Location: departments?msg_invalid=Department has been deleted successfully!");
 		}
 	}
-
 ?>

@@ -8,9 +8,9 @@
       return $sql;
     }
 
-    public function fetchUsersById($userId) {
-      $sql = $this->connect()->prepare("SELECT * FROM users WHERE id = ?");
-      $sql->execute([$userId]);
+    public function fetchDepartmentById($departmentId) {
+      $sql = $this->connect()->prepare("SELECT * FROM departments WHERE id = $departmentId");
+      $sql->execute();
       return $sql;
     }
 
@@ -27,8 +27,8 @@
       return $sql;
     }
 
-    public function updateUser($updateUserId, $firstName, $lastName, $username, $password) {
-      $sql = $this->connect()->prepare("UPDATE users SET first_name = '$firstName', last_name = '$lastName', username = '$username', password = '$password' WHERE id = $updateUserId");
+    public function updateDepartment($department, $departmentId)  {
+      $sql = $this->connect()->prepare("UPDATE departments SET department = '$department' WHERE id = $departmentId");
       $sql->execute();
       return $sql;
     }
