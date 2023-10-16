@@ -14,6 +14,12 @@
       return $sql;
     }
 
+    public function reset()  {
+      $sql = $this->connect()->prepare("UPDATE serving SET number = '0', type = '', counter = '' WHERE id = '0'");
+      $sql->execute();
+      return $sql;
+    }
+
     // Specials
     public function fetchQueueSpecials() {
       $sql = $this->connect()->prepare("SELECT * FROM specials");

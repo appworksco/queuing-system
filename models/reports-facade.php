@@ -8,43 +8,34 @@
       return $sql;
     }
 
-    public function fetchCounterById($counterId) {
-      $sql = $this->connect()->prepare("SELECT * FROM counters WHERE id = $counterId");
+    public function fetchAnnouncement() {
+      $sql = $this->connect()->prepare("SELECT * FROM announcement");
       $sql->execute();
       return $sql;
     }
 
-    public function verifyCounter($counter) {
-      $sql = $this->connect()->prepare("SELECT counter FROM counters WHERE counter = ?");
-      $sql->execute([$counter]);
-      $count = $sql->rowCount();
-      return $count;
-    }
-
-    public function addCounter($counter) {
-      $sql = $this->connect()->prepare("INSERT INTO counters(counter) VALUES (?)");
-      $sql->execute([$counter]);
-      return $sql;
-    }
-
-    public function updateCounter($counter, $counterId)  {
-      $sql = $this->connect()->prepare("UPDATE counters SET counter = '$counter' WHERE id = $counterId");
+    public function updateVideo($link)  {
+      $sql = $this->connect()->prepare("UPDATE video SET link = '$link' WHERE id = '0'");
       $sql->execute();
       return $sql;
     }
 
-    public function deleteCounter($counterId) {
-      $sql = $this->connect()->prepare("DELETE FROM counters WHERE id = $counterId");
+    public function updateAnnouncement($message) {
+      $sql = $this->connect()->prepare("UPDATE announcement SET message = '$message' WHERE id = '0'");
       $sql->execute();
       return $sql;
     }
 
-    public function login($username, $password) {
-      $sql = $this->connect()->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
-      $sql->execute([$username, $password]);
+    public function resetVideo()  {
+      $sql = $this->connect()->prepare("UPDATE video SET link = '' WHERE id = '0'");
+      $sql->execute();
       return $sql;
     }
-
+    public function resetAnnouncement() {
+      $sql = $this->connect()->prepare("UPDATE announcement SET message = '' WHERE id = '0'");
+      $sql->execute();
+      return $sql;
+    }
   }
 
 ?>

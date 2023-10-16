@@ -25,16 +25,19 @@
                     $fetchVideo = $reportsFacade->fetchVideo();
                     while ($row = $fetchVideo->fetch(PDO::FETCH_ASSOC)) {
                 ?>
-                <tr>
-                    <iframe class="w-100 h-100" src="<?= $row["link"] ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </tr>
+                <iframe class="w-100 h-100" src="<?= $row["link"] ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 <?php } ?>
                 </div>
                 <div class="announcement">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="text-uppercase fw-bold">Announcement</h4>
-                            <p class="lead">asdasd</p>
+                            <?php
+                                $fetchAnnouncement = $reportsFacade->fetchAnnouncement();
+                                while ($row = $fetchAnnouncement->fetch(PDO::FETCH_ASSOC)) {
+                            ?>
+                            <p class="lead"><?= $row["message"] ?></p>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

@@ -52,6 +52,11 @@
                             <span data-feather="bar-chart-2"></span> Reports
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reset">
+                            <span data-feather="settings"></span> Reset
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

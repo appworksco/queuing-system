@@ -1,30 +1,22 @@
 <?php 
     include realpath(__DIR__ . '../.././includes/layout/dashboard-header.php');
-    include realpath(__DIR__ . '../.././models/counters-facade.php');
+    include realpath(__DIR__ . '../.././models/reports-facade.php');
   
-    $countersFacade = new CountersFacade; 
-
-    if (isset($_GET["counter_id"])) {
-        $counterId = $_GET["counter_id"];
-    }
+    $reportsFacade = new ReportsFacade; 
 
     if (isset($_POST["submit"])) {
-        $counterId = $_POST["counter_id"];
-        $counter = $_POST["counter"];
+        $link = $_POST["link"];
     
-        if (empty($counter)) {
-          array_push($invalid, 'Counter should not be empty!');
+        if (empty($link)) {
+          array_push($invalid, 'Link should not be empty!');
         }   else {
-            $verifyCounter = $countersFacade->verifyCounter($counter);
-            if ($verifyCounter == 1) {
-                header("Location: counters.php?msg_invalid=Counter already exist!");
-            } else {
-                $updateCounter = $countersFacade->updateCounter($counter, $counterId);
-                if ($updateCounter) {
-                    header("Location: counters.php?msg_success=Counter has been added successfully!");
-                }
+
+            $updateVideo = $reportsFacade->updateVideo($link);
+            if ($updateVideo) {
+                header("Location: reports.php?msg_success=Video has been updated successfully!");
             }
         }
+        
     }
 ?>
 
@@ -52,7 +44,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="counters">
+                        <a class="nav-link" href="counters">
                             <span data-feather="monitor"></span> Counters
                         </a>
                     </li>
@@ -62,7 +54,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="reports">
+                        <a class="nav-link active" href="reports">
                             <span data-feather="bar-chart-2"></span> Reports
                         </a>
                     </li>
@@ -78,20 +70,14 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="site-departments pt-4">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h3>Update Counter</h3>
+                    <h3>Update Video</h3>
                 </div>
                 <hr>
                 <?php include('../errors.php'); ?>
                 <div class="form-group bg-light p-3">
-                    <form action="update-counter" method="post">
-                        <input type="hidden" value="<?= $counterId ?>" name="counter_id">
-                        <label for="counter" class="form-label">Counter</label>
-                        <?php
-                            $fetchCounterById = $countersFacade->fetchCounterById($counterId);
-                            while ($row = $fetchCounterById->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
-                        <input type="text" class="form-control" id="counter" value="<?= $row["counter"] ?>" placeholder="counter" name="counter">
-                        <?php } ?>
+                    <form action="update-video" method="post">
+                        <label for="link" class="form-label">Link</label>
+                        <input type="text" class="form-control" id="counter" placeholder="Link" name="link">
                         <button class="btn btn-primary btn-sm mt-2" type="submit" name="submit">Submit</button>
                     </form>
                 </div>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 01:01 PM
+-- Generation Time: Oct 16, 2023 at 03:00 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.1.17
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,6 +31,13 @@ CREATE TABLE `announcement` (
   `id` int(11) NOT NULL,
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `announcement`
+--
+
+INSERT INTO `announcement` (`id`, `message`) VALUES
+(0, '');
 
 -- --------------------------------------------------------
 
@@ -99,7 +106,7 @@ CREATE TABLE `serving` (
 --
 
 INSERT INTO `serving` (`id`, `number`, `type`, `counter`) VALUES
-(0, 1, 'Regular', 'Counter 1');
+(0, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -154,7 +161,7 @@ CREATE TABLE `video` (
 --
 
 INSERT INTO `video` (`id`, `link`) VALUES
-(1, 'https://www.youtube.com/embed/oYtqLc9fn2g');
+(0, '');
 
 --
 -- Indexes for dumped tables
@@ -216,7 +223,7 @@ ALTER TABLE `video`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `counters`
@@ -234,7 +241,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `regulars`
 --
 ALTER TABLE `regulars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `serving`
@@ -246,7 +253,7 @@ ALTER TABLE `serving`
 -- AUTO_INCREMENT for table `specials`
 --
 ALTER TABLE `specials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -13,7 +13,7 @@
     use Mike42\Escpos\CapabilityProfiles\DefaultCapabilityProfile;
     use Mike42\Escpos\CapabilityProfiles\SimpleCapabilityProfile;
 
-    $connector = new WindowsPrintConnector("smb://TRANSAK-POS1/xprinter");
+    $connector = new WindowsPrintConnector("smb://". getenv('COMPUTERNAME') ."/xprinter");
     $printer = new Printer($connector);
     $date = date("m-d-Y");
 

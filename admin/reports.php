@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="reports">
                             <span data-feather="bar-chart-2"></span> Reports
                         </a>
                     </li>
@@ -68,10 +68,10 @@
                         <h6 class="card-title m-0">Video</h6>
                     </div>
                     <div class="card-body">
-                        <table id="example" class="table table-striped" style="width:100%">
+                        <table class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Counter</th>
+                                    <th>Link</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -83,7 +83,7 @@
                                 <tr>
                                     <td><?= $row["link"] ?></td>
                                     <td>
-                                        <a href="update-counter?counter_id=<?= $row["id"] ?>" class="btn btn-info btn-sm">Update</a>
+                                        <a href="update-video" class="btn btn-info btn-sm">Update</a>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -91,7 +91,34 @@
                         </table>
                     </div>
                 </div>
-                
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <h6 class="card-title m-0">Announcement</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Message</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $fetchAnnouncement = $reportsFacade->fetchAnnouncement();
+                                    while ($row = $fetchAnnouncement->fetch(PDO::FETCH_ASSOC)) {
+                                ?>
+                                <tr>
+                                    <td><?= $row["message"] ?></td>
+                                    <td>
+                                        <a href="update-announcement" class="btn btn-info btn-sm">Update</a>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
