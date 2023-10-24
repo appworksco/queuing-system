@@ -55,4 +55,4 @@
     $printer -> pulse();
     $printer -> close();
 
-    header("Location: index");
+    header("Location: ../add-que");

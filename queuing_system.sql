@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2023 at 03:00 AM
+-- Generation Time: Oct 24, 2023 at 10:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -106,7 +106,7 @@ CREATE TABLE `serving` (
 --
 
 INSERT INTO `serving` (`id`, `number`, `type`, `counter`) VALUES
-(0, 0, '', '');
+(0, 1, 'Special', 'Counter 1');
 
 -- --------------------------------------------------------
 
@@ -120,6 +120,13 @@ CREATE TABLE `specials` (
   `type` varchar(10) NOT NULL,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `specials`
+--
+
+INSERT INTO `specials` (`id`, `number`, `type`, `status`) VALUES
+(46, 2, 'Special', 'Wait');
 
 -- --------------------------------------------------------
 
@@ -241,7 +248,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `regulars`
 --
 ALTER TABLE `regulars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `serving`
@@ -253,7 +260,7 @@ ALTER TABLE `serving`
 -- AUTO_INCREMENT for table `specials`
 --
 ALTER TABLE `specials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `users`

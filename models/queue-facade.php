@@ -58,6 +58,12 @@
       return $sql;
     }
 
+    public function serveSpecials($specialId) {
+      $sql = $this->connect()->prepare("UPDATE specials SET status = 'Serving' WHERE id = '$specialId'");
+      $sql->execute();
+      return $sql;
+    }
+
     public function doneSpecial($specialId)  {
       $sql = $this->connect()->prepare("DELETE FROM specials WHERE id = $specialId");
       $sql->execute();
@@ -89,6 +95,12 @@
       $sql->execute();
       $count = $sql->rowCount();
       return $count;
+    }
+
+    public function serveRegulars($regularId) {
+      $sql = $this->connect()->prepare("UPDATE regulars SET status = 'Serving' WHERE id = '$regularId'");
+      $sql->execute();
+      return $sql;
     }
 
     public function addNumberRegular($number, $type, $status) {

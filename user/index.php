@@ -45,9 +45,6 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h6 class="card-title pt-2">Special</h6>
-                    <div style="margin-top: 3px">
-                        <a href="add-special" class="btn btn-success btn-sm">Add Special</a>
-                    </div>
                 </div>
                 <div class="card-body">
                     <table id="example-user" class="table table-striped" style="width:100%">
@@ -70,7 +67,7 @@
                                     <?php if ($row["status"] == 'Wait') { ?> 
                                         <a href="serve-special?special_id=<?= $row["id"] ?>&number=<?= $row["number"] ?>&type=<?= $row["type"] ?>" class="btn btn-info btn-sm">Call</a>
                                         <a href="done-special?special_id=<?= $row["id"] ?>" class="btn btn-success btn-sm">No Show</a>
-                                    <?php } if ($row["status"] == 'Serve') {  ?>
+                                    <?php } if ($row["status"] == 'Serving') {  ?>
                                         <a href="done-special?special_id=<?= $row["id"] ?>" class="btn btn-success btn-sm">Done</a>
                                     <?php } ?>
                                 </td>
@@ -86,9 +83,6 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h6 class="card-title pt-2">Regular</h6>
-                    <div style="margin-top: 3px">
-                        <a href="add-regular" class="btn btn-primary btn-sm">Add Regular</a>
-                    </div>
                 </div>
                 <div class="card-body">
                     <table id="example-user-1" class="table table-striped" style="width:100%">
@@ -111,7 +105,7 @@
                                     <?php if ($row["status"] == 'Wait') { ?> 
                                         <a href="serve-regular?regular_id=<?= $row["id"] ?>&number=<?= $row["number"] ?>&type=<?= $row["type"] ?>" class="btn btn-info btn-sm">Call</a>
                                         <a href="done-regular?regular_id=<?= $row["id"] ?>" class="btn btn-success btn-sm">No Show</a>
-                                    <?php } if ($row["status"] == 'Serve') {  ?>
+                                    <?php } if ($row["status"] == 'Serving') {  ?>
                                         <a href="done-regular?regular_id=<?= $row["id"] ?>" class="btn btn-success btn-sm">Done</a>
                                     <?php } ?>
                                 </td>

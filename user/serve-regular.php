@@ -19,7 +19,20 @@
 	
 	$serve = $queueFacade->serve($number, $type, $counter);
 	if ($serve) {
-		$doneRegular = $queueFacade->doneRegular($regularId);
-		header("Location: index");
-	}
+		$serveRegulars = $queueFacade->serveRegulars($regularId); ?>
+		<audio id="audio" src=".././dist/sfx/bell.mp3"></audio>
+	<?php }
 ?>
+
+<script>
+	var audio = document.getElementById("audio");
+	audio.play();
+
+	var count = 2;
+	setInterval(function(){
+		count--;
+		if (count == 0) {
+			window.location = 'index.php'; 
+		}
+	},1000);
+</script>

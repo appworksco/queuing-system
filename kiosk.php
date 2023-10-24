@@ -2,7 +2,7 @@
     include realpath(__DIR__ . '/includes/layout/header.php');
     include realpath(__DIR__ . '/models/reports-facade.php');
 
-    $reportsFacade = new ReportsFacade;    
+    $reportsFacade = new ReportsFacade;
 ?>
     
 <style>
