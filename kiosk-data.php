@@ -49,6 +49,6 @@
 <script>
     setTimeout(function(){
         window.location.reload(1);
-    }, 2000);
+    }, 5000);
 </script>
 <?php include realpath(__DIR__ . '/includes/layout/footer.php') ?>

@@ -16,6 +16,8 @@
     }
 </style>
 
+<audio id="audio" src="./dist/sfx/bell.mp3" autoplay></audio>
+
 <div id="site-kiosk">
     <div class="container-fluid">
         <div class="row">
@@ -31,6 +33,7 @@
                 <div class="announcement">
                     <div class="card">
                         <div class="card-body">
+                            <button id="audioBtn">Click Me</button>
                             <h4 class="text-uppercase fw-bold">Announcement</h4>
                             <?php
                                 $fetchAnnouncement = $reportsFacade->fetchAnnouncement();
@@ -50,3 +53,17 @@
 </div>
 
 <?php include realpath(__DIR__ . '/includes/layout/footer.php') ?>
+
+<script type="text/javascript">
+
+window.addEventListener("load", (event) => {
+    var timer, sound;
+    sound = new Howl({
+        src: ['./dist/sfx/bell.mp3']
+        });
+        setInterval(function(){
+        sound.play();
+    },5000);
+});
+   
+</script>
