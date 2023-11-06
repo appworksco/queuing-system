@@ -33,7 +33,7 @@
                 <div class="announcement">
                     <div class="card">
                         <div class="card-body">
-                            <button id="audioBtn">Click Me</button>
+                            <!-- <button id="audioBtn">Click Me</button> -->
                             <h4 class="text-uppercase fw-bold">Announcement</h4>
                             <?php
                                 $fetchAnnouncement = $reportsFacade->fetchAnnouncement();
@@ -65,5 +65,5 @@ window.addEventListener("load", (event) => {
         sound.play();
     },5000);
 });
-   
+
 </script>
